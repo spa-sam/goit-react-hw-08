@@ -27,6 +27,12 @@ This project uses the following libraries:
 - **React Transition Group**: A set of components for managing component states (including mounting and unmounting) over time, specifically designed with animation in mind.
   Install:
   `npm install react-transition-group`
+- **React Hot Toast**: A library for displaying notifications in React applications.
+  Install:
+  `npm install react-hot-toast`
+- **Material-UI**: A popular UI framework for React that implements Google's Material Design.
+  Install:
+  `npm install @mui/material @emotion/react @emotion/styled`
 
 ## Commands for working with the project
 
@@ -55,6 +61,10 @@ This project uses the following libraries:
   Встановлення: `npm install axios`
 - **React Transition Group**: Набір компонентів для управління станами компонентів (включаючи монтаж і демонтаж) з часом, спеціально розроблений з урахуванням анімації.
   Встановлення: `npm install react-transition-group`
+- **React Hot Toast**: Бібліотека для відображення сповіщень в додатках React.
+  Встановлення: `npm install react-hot-toast`
+- **Material-UI**: Популярний фреймворк UI для React, який реалізує дизайн Google Material.
+  Встановлення: `npm install @mui/material @emotion/react @emotion/styled`
 
 ## Команди для роботи з проектом
 
