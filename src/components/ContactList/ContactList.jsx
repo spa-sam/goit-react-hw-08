@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
-import { fetchContacts } from "../../redux/contactsOps";
+import { fetchContacts } from "../../redux/contacts/operations";
 import {
   selectLoading,
   selectError,
   // selectFilteredContacts,
-} from "../../redux/contactsSlice";
+} from "../../redux/contacts/slice";
 import { selectFilteredContacts } from "../../redux/selectors";
 
 function ContactList() {
