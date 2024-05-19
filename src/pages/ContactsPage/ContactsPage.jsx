@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { fetchContacts } from "../../redux/contacts/operations";
