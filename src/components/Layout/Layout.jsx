@@ -63,7 +63,7 @@ const Layout = ({ children }) => {
       </header>
       <main className={styles.main}>{children}</main>
       <footer className={styles.footer}>
-        <p>&copy; 2023 My App. All rights reserved.</p>
+        <p>&copy; 2024 My App. All rights reserved.</p>
       </footer>
     </div>
   );
