@@ -34,10 +34,9 @@ const App = () => {
                 path="/register"
                 element={<RestrictedRoute component={RegistrationPage} />}
               />
-              <Route
-                path="/contacts"
-                element={<PrivateRoute component={ContactsPage} />}
-              />
+              <Route path="/contacts" element={<PrivateRoute />}>
+                <Route path="" element={<ContactsPage />} />
+              </Route>
             </Routes>
           </Layout>
         </Router>

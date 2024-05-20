@@ -21,7 +21,14 @@ export const register = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      if (error.response && error.response.status === 400) {
+        return rejectWithValue(
+          "Invalid registration data. Please check your input."
+        );
+      }
+      return rejectWithValue(
+        "An error occurred during registration. Please try again later."
+      );
     }
   }
 );
@@ -34,7 +41,12 @@ export const login = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      if (error.response && error.response.status === 400) {
+        return rejectWithValue("Invalid email or password. Please try again.");
+      }
+      return rejectWithValue(
+        "An error occurred during login. Please try again later."
+      );
     }
   }
 );
@@ -47,7 +59,9 @@ export const logout = createAsyncThunk(
       token.unset();
       dispatch(clearContacts());
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(
+        "An error occurred during logout. Please try again later."
+      );
     }
   }
 );
@@ -59,7 +73,7 @@ export const refreshUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      return rejectWithValue("Unable to fetch user");
+      return rejectWithValue("Unable to fetch user. No token found.");
     }
 
     token.set(persistedToken);
@@ -67,7 +81,14 @@ export const refreshUser = createAsyncThunk(
       const { data } = await axios.get("/users/current");
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      if (error.response && error.response.status === 401) {
+        return rejectWithValue(
+          "Invalid or expired token. Please log in again."
+        );
+      }
+      return rejectWithValue(
+        "An error occurred while fetching user data. Please try again later."
+      );
     }
   }
 );

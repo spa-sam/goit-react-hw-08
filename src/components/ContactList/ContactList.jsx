@@ -7,21 +7,14 @@ import { fetchContacts } from "../../redux/contacts/operations";
 import {
   selectLoading,
   selectError,
-  // selectFilteredContacts,
-} from "../../redux/contacts/slice";
-import { selectFilteredContacts } from "../../redux/selectors";
+  selectFilteredContacts,
+} from "../../redux/contacts/selectors";
 
 function ContactList() {
   const dispatch = useDispatch();
   const filteredContacts = useSelector(selectFilteredContacts);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
-
-  // useEffect(() => {
-  //   if (filteredContacts.length === 0) {
-  //     dispatch(fetchContacts());
-  //   }
-  // }, [dispatch, filteredContacts]);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -36,10 +29,12 @@ function ContactList() {
       ) : filteredContacts.length === 0 ? (
         <p>No contacts found.</p>
       ) : (
-        <TransitionGroup component="div" className={css.contactList}>
+        <TransitionGroup component="ul" className={css.contactList}>
           {filteredContacts.map((contact) => (
             <CSSTransition key={contact.id} timeout={300} classNames={css}>
-              <Contact contact={contact} />
+              <li>
+                <Contact contact={contact} />
+              </li>
             </CSSTransition>
           ))}
         </TransitionGroup>
