@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addRandomContacts } from "../../api";
 import { selectToken } from "../../redux/auth/selectors";
+import { addContact } from "../../redux/contacts/operations";
 import css from "./RandomButton.module.css";
 
 const RandomButton = () => {
@@ -10,7 +11,9 @@ const RandomButton = () => {
   const handleAddRandomContacts = async () => {
     try {
       const contacts = await addRandomContacts(token);
-      dispatch({ type: "contacts/addContacts", payload: contacts });
+      contacts.forEach((contact) => {
+        dispatch(addContact(contact));
+      });
     } catch (error) {
       console.error("Error adding random contacts:", error);
     }
