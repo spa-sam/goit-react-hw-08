@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { useTransition, animated } from "react-spring";
 import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
 import { fetchContacts } from "../../redux/contacts/operations";
@@ -20,6 +20,13 @@ function ContactList() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  const transitions = useTransition(filteredContacts, {
+    keys: (contact) => contact.id,
+    from: { opacity: 0, transform: "translateY(-20px)" },
+    enter: { opacity: 1, transform: "translateY(0)" },
+    leave: { opacity: 0, transform: "translateY(-20px)" },
+  });
+
   return (
     <div className={css.contactListContainer}>
       {loading && filteredContacts.length === 0 ? (
@@ -29,15 +36,13 @@ function ContactList() {
       ) : filteredContacts.length === 0 ? (
         <p>No contacts found.</p>
       ) : (
-        <TransitionGroup component="ul" className={css.contactList}>
-          {filteredContacts.map((contact) => (
-            <CSSTransition key={contact.id} timeout={300} classNames={css}>
-              <li>
-                <Contact contact={contact} />
-              </li>
-            </CSSTransition>
+        <ul className={css.contactList}>
+          {transitions((style, contact) => (
+            <animated.li style={style} key={contact.id}>
+              <Contact contact={contact} />
+            </animated.li>
           ))}
-        </TransitionGroup>
+        </ul>
       )}
     </div>
   );
