@@ -5,6 +5,7 @@ import { fetchContacts } from "../../redux/contacts/operations";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import ContactList from "../../components/ContactList/ContactList";
 import SearchBox from "../../components/SearchBox/SearchBox";
+import RandomButton from "../../components/RandomButton/RandomButton";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const ContactsPage = () => {
       <h2>Contacts</h2>
       <ContactForm />
       <SearchBox />
+      <RandomButton />
       <ContactList />
     </div>
   );
