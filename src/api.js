@@ -6,7 +6,7 @@ const api = axios.create({
 
 export const addRandomContacts = async (token) => {
   try {
-    const contacts = generateRandomContacts(20);
+    const contacts = generateRandomContacts(5);
     const promises = contacts.map((contact) =>
       api.post("/contacts", contact, {
         headers: {
