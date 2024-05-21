@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
+import { Toaster } from "react-hot-toast";
 import PrivateRoute from "../routes/PrivateRoute";
 import RestrictedRoute from "../routes/RestrictedRoute";
 import HomePage from "../../pages/HomePage/HomePage";
@@ -39,6 +40,7 @@ const App = () => {
               </Route>
             </Routes>
           </Layout>
+          <Toaster />
         </Router>
       )}
     </>

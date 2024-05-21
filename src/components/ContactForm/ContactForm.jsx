@@ -1,8 +1,8 @@
-// import { nanoid } from "nanoid";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
+import { toast } from "react-hot-toast";
 import css from "./ContactForm.module.css";
 
 const validationSchema = Yup.object({
@@ -25,8 +25,14 @@ function ContactForm() {
       initialValues={{ name: "", number: "" }}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        dispatch(addContact(values));
-        resetForm();
+        dispatch(addContact(values))
+          .then(() => {
+            toast.success("Contact added successfully");
+            resetForm();
+          })
+          .catch(() => {
+            toast.error("Failed to add contact");
+          });
       }}
     >
       <Form className={css.contactForm}>
