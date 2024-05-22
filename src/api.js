@@ -21,7 +21,6 @@ export const addRandomContacts = async (token) => {
   }
 };
 
-// Функция для генерации случайных контактов
 function generateRandomContacts(count) {
   const contacts = [];
   for (let i = 0; i < count; i++) {
@@ -32,7 +31,6 @@ function generateRandomContacts(count) {
   return contacts;
 }
 
-// Функция для генерации случайного имени
 function generateRandomName() {
   const names = [
     "John",
@@ -60,7 +58,6 @@ function generateRandomName() {
   return names[randomIndex];
 }
 
-// Функция для генерации случайного номера телефона
 function generateRandomPhoneNumber() {
   const areaCode = Math.floor(Math.random() * 900) + 100;
   const prefix = Math.floor(Math.random() * 900) + 100;

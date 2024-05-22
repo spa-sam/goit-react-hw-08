@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { logout } from "../../redux/auth/operations";
+import { AppBar, Toolbar, Container, Box } from "@mui/material";
 import styles from "./Layout.module.css";
 
 const Layout = ({ children }) => {
@@ -13,19 +14,19 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <nav className={styles.navigation}>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? styles.activeLink : styles.link
-            }
-          >
-            Home
-          </NavLink>
-          {isLoggedIn ? (
-            <>
+    <Box className={styles.container}>
+      <AppBar position="static">
+        <Toolbar>
+          <Box className={styles.navigation}>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? styles.activeLink : styles.link
+              }
+            >
+              Home
+            </NavLink>
+            {isLoggedIn && (
               <NavLink
                 to="/contacts"
                 className={({ isActive }) =>
@@ -34,37 +35,43 @@ const Layout = ({ children }) => {
               >
                 Contacts
               </NavLink>
-              <button className={styles.button} onClick={handleLogout}>
+            )}
+          </Box>
+          <Box className={styles.authLinks}>
+            {isLoggedIn ? (
+              <NavLink to="/" className={styles.link} onClick={handleLogout}>
                 Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <NavLink
-                to="/login"
-                className={({ isActive }) =>
-                  isActive ? styles.activeLink : styles.link
-                }
-              >
-                Login
               </NavLink>
-              <NavLink
-                to="/register"
-                className={({ isActive }) =>
-                  isActive ? styles.activeLink : styles.link
-                }
-              >
-                Register
-              </NavLink>
-            </>
-          )}
-        </nav>
-      </header>
-      <main className={styles.main}>{children}</main>
-      <footer className={styles.footer}>
+            ) : (
+              <>
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive ? styles.activeLink : styles.link
+                  }
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className={({ isActive }) =>
+                    isActive ? styles.activeLink : styles.link
+                  }
+                >
+                  Register
+                </NavLink>
+              </>
+            )}
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Container component="main" className={styles.main}>
+        {children}
+      </Container>
+      <Box component="footer" className={styles.footer}>
         <p>&copy; 2024 My App. All rights reserved.</p>
-      </footer>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

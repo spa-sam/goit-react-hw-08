@@ -4,33 +4,39 @@
   min-height: 100vh;
 }
 
-.header {
-  background-color: #f0f0f0;
-  padding: 20px;
+.navigation {
+  flex-grow: 1;
+  display: flex;
+  gap: 16px;
 }
 
-.navigation {
+.authLinks {
   display: flex;
-  gap: 20px;
+  gap: 16px;
 }
 
 .link {
-  color: #333;
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #fff;
 }
 
 .activeLink {
-  color: #007bff;
-  text-decoration: underline;
+  color: #fff;
+  text-decoration: none;
 }
 
 .main {
-  flex: 1;
-  padding: 20px;
+  flex-grow: 1;
+  padding: 24px;
 }
 
 .footer {
   background-color: #f0f0f0;
-  padding: 20px;
+  padding: 16px;
   text-align: center;
 }
