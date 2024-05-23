@@ -1,0 +1,18 @@
+.userMenu {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.userName {
+  margin-right: 10px;
+}
+
+.logoutLink {
+  color: white;
+  text-decoration: none;
+}
+
+.logoutLink:hover {
+  text-decoration: underline;
+}
